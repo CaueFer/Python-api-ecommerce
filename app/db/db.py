@@ -1,8 +1,12 @@
+import os
 from tortoise import Tortoise
 
 async def init_db():
     await Tortoise.init(
-        db_url="postgres://user:password@localhost:5432/ecommerce_db",
-        modules={"models": ["app.models"]}
+        db_url=os.getenv("DB_URL"),
+        modules={"models": ["app.models"]} 
     )
     await Tortoise.generate_schemas()
+
+async def close_db():
+    await Tortoise.close_connections()

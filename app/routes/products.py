@@ -32,7 +32,7 @@ async def update_product(product_id: int, product: ProductCreate):
     except DoesNotExist:
         raise HTTPException(status_code=404, detail="Product not found")
 
-# Excluir um produto
+
 @router.delete("/products/{product_id}", response_model=Product)
 async def delete_product(product_id: int):
     try:
